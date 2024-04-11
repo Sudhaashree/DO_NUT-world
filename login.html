@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>donut shop</title>
+    <link rel="stylesheet" href="style.css"> <!-- Include your stylesheet, if you have one -->
+</head>
+<body class="pink-background">
+<header>
+        <h1><center><big>Creamy DO_NUT</big></center></h1>
+            </header>
+<p><b><center>YUMMY SWEETS DELIVERED TO YOUR DINING TABLE!!!<b></p>
+        <p><b>TAKE A BITE DO NOTHING!!!<b></center></p>
+<center <br> <br> 
+        <h2 style="color: black;">Login</h2> <br>
+	<form action="do.html">
+
+        <form id="login">
+            <label for="username" style="color: black;">Username:</label>
+            <input type="text" id="username" required><br><br>
+            <label for="password" style="color: black;">Password:</label>
+            <input type="password" id="password" required><br><br>
+            <button type="submit">Login</button>
+        </form>
+    </center>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+           
+            var username, password;
+
+            username = document.getElementById('username').value;
+            password = document.getElementById('password').value;
+
+            // Check if the username contains numbers and includes special characters
+            var hasNumbers = /\d/.test(username);
+            var hasSpecialCharacters = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(username);
+
+            if (hasNumbers || !hasSpecialCharacters) {
+                alert('Username must not contain numbers and must include special characters.');
+            } else {
+                alert('Welcome, ' + username + '!');
+            }
+        });
+    </script>
+<center>
+<h2 style ="text-align:center;font-size:20px;">if you don't have any account <br> please SIGN IN </h2>
+<a style="padding-right:20px;" href="sign.html">click here</a>
+</center>
+
+</body>
+</html>

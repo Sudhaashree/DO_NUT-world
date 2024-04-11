@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>donut shop</title>
+    <link rel="stylesheet" href="style.css"> <!-- Include your stylesheet, if you have one -->
+</head>
+<body class="pink-background">
+<header>
+        <h1><center><big>Creamy DO_NUT</big></center></h1>
+            </header>
+<p><b><center>YUMMY SWEETS DELIVERED TO YOUR DINING TABLE!!!<b></p>
+        <p><b>TAKE A BITE DO NOTHING!!!<b></center></p> <br>
+<style>
+.error {color: #FF0001;}
+</style>
+
+<?php
+$nameErr = $emailErr = $mobilenoErr = $genderErr = $websiteErr = $agreeErr = "";
+$name = $email = $mobileno = $gender = $agree = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["name"])) {
+         $nameErr = "Name is required";
+    } else {
+        $name = input_data($_POST["name"]);
+            if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+                $nameErr = "Only alphabets and white space are allowed";
+            }
+    }
+
+    if (empty($_POST["email"])) {
+            $emailErr = "Email is required";
+    } else {
+            $email = input_data($_POST["email"]);
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $emailErr = "Invalid email format";
+            }
+     }
+
+    if (empty($_POST["mobileno"])) {
+            $mobilenoErr = "Mobile no is required";
+    } else {
+            $mobileno = input_data($_POST["mobileno"]);
+            if (!preg_match ("/^[0-9]*$/", $mobileno) ) {
+            $mobilenoErr = "Only numeric value is allowed.";
+            }
+        if (strlen ($mobileno) != 10) {
+            $mobilenoErr = "Mobile no must contain 10 digits.";
+            }
+    }
+
+    if (empty($_POST["gender"])) {
+            $genderErr = "Gender is required";
+    } else {
+            $gender = input_data($_POST["gender"]);
+    }
+
+    if (!isset($_POST['agree'])){
+            $agreeErr = "Accept terms of services before submit.";
+    } else {
+            $agree = input_data($_POST["agree"]);
+    }
+}
+
+function input_data($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+?>
+<center>
+<h2>sing up here !!!</h2>
+<span class="error"></span>
+<br><br>
+<form action="do.html">
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>
+    Name:
+    <input type="text" name="name">
+    <span class="error">* <?php echo $nameErr; ?> </span>
+    <br><br>
+    E-mail:
+    <input type="text" name="email">
+    <span class="error">* <?php echo $emailErr; ?> </span>
+    <br><br>
+    Mobile No:
+    <input type="text" name="mobileno">
+    <span class="error">* <?php echo $mobilenoErr; ?> </span>
+    <br><br>
+     Gender:
+    <input type="radio" name="gender" value="male"> Male
+    <input type="radio" name="gender" value="female"> Female
+    <input type="radio" name="gender" value="other"> Other
+    <span class="error">* <?php echo $genderErr; ?> </span>
+    <br><br>
+    Agree to Terms of Service:
+    <input type="checkbox" name="agree">
+    <span class="error">* <?php echo $agreeErr; ?> </span>
+    <br><br>
+    <input type="submit" name="submit" value="Submit">
+    <br><br>
+</form>
+</center>
+</body>
+</html>
